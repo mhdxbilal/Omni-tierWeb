@@ -1,0 +1,6 @@
+{
+  "name": "OmniWeb",
+  "description": "Autonomous Web Operating Environment",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

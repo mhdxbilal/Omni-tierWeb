@@ -1,0 +1,58 @@
+name: OmniWeb CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main", "release/**" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      build_env:
+        description: 'Target environment build configuration'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - prototype
+          - staging
+          - production
+
+permissions:
+  contents: read
+
+jobs:
+  build_and_verify:
+    name: Build & Verify (Android + Rust NDK)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        
+      - name: Setup Java JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          
+      - name: Setup Rust Toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-linux-android, armv7-linux-androideabi, x86_64-linux-android
+          
+      - name: Setup Gradle Cache
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          cache-read-only: ${{ github.ref != 'refs/heads/main' }}
+        
+      - name: Make Gradle Wrapper Executable
+        run: |
+          set -euo pipefail
+          chmod +x ./gradlew
+        
+      - name: Execute Deterministic Build & Lint
+        run: |
+          set -euo pipefail
+          ./gradlew assembleDebug lintDebug --stacktrace --no-daemon
