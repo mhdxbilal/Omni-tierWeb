@@ -10,7 +10,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Share
@@ -152,7 +152,7 @@ fun SafariBottomBar(
             Icon(Icons.AutoMirrored.Filled.ArrowForward, "Forward", tint = Color.DarkGray, modifier = Modifier.size(24.dp))
             Icon(Icons.Default.Share, "Share", tint = Color(0xFF0A84FF), modifier = Modifier.size(24.dp))
             Icon(Icons.Default.FavoriteBorder, "Bookmarks", tint = Color(0xFF0A84FF), modifier = Modifier.size(24.dp))
-            Icon(Icons.Default.List, "Tabs", tint = Color(0xFF0A84FF), modifier = Modifier.size(24.dp))
+            Icon(Icons.AutoMirrored.Filled.List, "Tabs", tint = Color(0xFF0A84FF), modifier = Modifier.size(24.dp))
         }
         Spacer(modifier = Modifier.height(8.dp))
     }
