@@ -70,7 +70,7 @@ android {
   // Native Cargo Destinations mapping for Rust layer
   sourceSets {
     getByName("main") {
-      jniLibs.srcDir("src/main/rust/target/jniLibs")
+      jniLibs.srcDirs("src/main/rust/target/jniLibs")
     }
   }
 
@@ -122,6 +122,14 @@ dependencies {
   // Rust networking interceptors and C++ Transcoding handle deep operations natively.
   
   testImplementation(libs.junit)
+  testImplementation(libs.robolectric)
+  testImplementation(libs.roborazzi)
+  testImplementation(libs.roborazzi.compose)
+  testImplementation(libs.roborazzi.junit.rule)
+  testImplementation(libs.androidx.compose.ui.test.junit4)
+  testImplementation(libs.androidx.junit)
+  testImplementation(libs.androidx.core)
+  testImplementation(libs.androidx.runner)
   androidTestImplementation(platform(libs.androidx.compose.bom))
   androidTestImplementation(libs.androidx.compose.ui.test.junit4)
   androidTestImplementation(libs.androidx.junit)
